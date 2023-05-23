@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controll</title>
+  <style>
+    .box{
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input type="text" id="pc">
+    <input type="text" id="inp">
+    <input type="number" id="ids">
+  </div>
+  <button id="send">Send</button>
+</body>
+
+  <script>
+
+    const imp = document.querySelector('#inp')
+    const pc = document.querySelector('#pc')
+    pc.value='---'
+    const ids = document.querySelector('#ids')
+    ids.value=1
+    const btn = document.querySelector('#send')
+
+    const call = async()=>{
+      const response = await fetch("/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: '{"ex":"'+ pc.value+','+imp.value+','+ids.value  +'"}',
+      });
+      if(ids.value!=0){
+        ids.value++
+      }
+    }
+
+    btn.addEventListener('click',call)
+
+  </script>
+
+</html>
